@@ -1,14 +1,13 @@
-import { useState } from 'react'
-
+import React from 'react'
+import Login from './PAGES/Login/Login'
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
-      Start Code Here
-    </>
+    <div>
+      <Login/>
+    </div>
   )
 }
 
 export default App
+
