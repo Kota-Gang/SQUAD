@@ -1,10 +1,11 @@
 import React from 'react'
-import Login from './PAGES/Login/Login'
-
+import SignIn from './Pages/Authenctication/SignIn/SignIn'
+import Signup from './Pages/Authenctication/SignUp/Signup'
 function App() {
   return (
     <div>
-      <Login/>
+      <SignIn/>
+      <Signup/>
     </div>
   )
 }
