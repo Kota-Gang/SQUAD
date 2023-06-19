@@ -9,6 +9,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home/>}></Route>
         <Route path="/squadaccountemailverification" element={<EmailVerification/>}></Route>
+        <Route path="/meet?id" element={<Home/>}></Route>
       </Routes>
     </BrowserRouter>
   )
