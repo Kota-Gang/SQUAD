@@ -1,10 +1,27 @@
 import React, { useEffect, useState } from "react";
-import { signInWithPopup } from "firebase/auth";
 import { provider, auth } from "./firebaseconfig";
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import {
+  sendSignInLinkToEmail,
+  createUserWithEmailAndPassword,
+  signInWithPopup,
+} from "firebase/auth";
 import "./styles.scss";
 
 import { FcGoogle } from "react-icons/fc";
+
+const actionCodeSettings = {
+  url: "http://localhost:5173/",
+  handleCodeInApp: true,
+  iOS: {
+    bundleId: "com.example.ios",
+  },
+  android: {
+    packageName: "com.example.android",
+    installApp: true,
+    minimumVersion: "12",
+  },
+  dynamicLinkDomain: "example.page.link",
+};
 
 const SignUp = ({ setValue }) => {
   const [email, setEmail] = useState("");
@@ -23,17 +40,30 @@ const SignUp = ({ setValue }) => {
 
   const signup = (e) => {
     e.preventDefault();
-    const auth = getAuth();
-    createUserWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        const user = userCredential.user;
-        console.log("Successfull SignUp", user);
-      })
-      .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        console.log(error);
-      });
+
+    if (userName.length == 0 || password.length < 6 || email.length == 0) {
+      if (password.length < 6) {
+        alert("Password Cannot Be Less Than 6 Digits");
+      } else alert("Please Provdie Necessary Details");
+    } else {
+      createUserWithEmailAndPassword(auth, email, password)
+        .then((userCredential) => {
+          const user = userCredential.user;
+          auth.signOut();
+        })
+        .catch((error) => {
+          console.log(error.message);
+        });
+
+      sendSignInLinkToEmail(auth, email, actionCodeSettings)
+        .then(() => {
+          window.localStorage.setItem("emailForSignIn", email);
+          alert("Email verification link has been sent to your email address")
+        })
+        .catch((error) => {
+          console.log(error.message)
+        });
+    }
   };
 
   const handleChange = (event) => {
@@ -45,10 +75,31 @@ const SignUp = ({ setValue }) => {
   return (
     <div className="wrapper">
       <form onSubmit={signup} className="form">
-        <input className="input" type="text" placeholder="Username" value={userName} onChange={handleChange} />
-        <input className="input" type="Email" placeholder="Email" value={email} onChange={handleChange}/>
-        <input className="input" type="Password" placeholder="Password" value={password} onChange={handleChange}/>
-        <button className="btn" type="submit">
+        <input
+          className="input"
+          type="text"
+          placeholder="Username"
+          name="userName"
+          value={userName}
+          onChange={handleChange}
+        />
+        <input
+          className="input"
+          type="Email"
+          placeholder="Email"
+          name="email"
+          value={email}
+          onChange={handleChange}
+        />
+        <input
+          className="input"
+          type="Password"
+          placeholder="Password"
+          value={password}
+          name="password"
+          onChange={handleChange}
+        />
+        <button onClick={signup} className="btn" type="submit">
           Sign Up
         </button>
       </form>

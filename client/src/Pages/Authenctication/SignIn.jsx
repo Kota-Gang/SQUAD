@@ -9,6 +9,7 @@ import "./styles.scss"
 
 
 const SignIn = ({setValue}) => {
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -28,7 +29,11 @@ const SignIn = ({setValue}) => {
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         const user = userCredential.user;
-        console.log("Successfull Signin", user);
+        if(user.emailVerified===false){
+          console.log("Please Verify Your Email ID");
+          auth.signOut();
+        }
+        else console.log("Successfull Signin", user);
       })
       .catch((error) => {
         const errorCode = error.code;
@@ -45,8 +50,8 @@ const SignIn = ({setValue}) => {
   return (
     <div className="wrapper">
         <form onSubmit={signin}  className="form">
-          <input className="input" type="Email" placeholder="Email" value={email} onChange={handleChange}/>
-          <input className="input" type="Password" placeholder="Password" value={password} onChange={handleChange}/>
+          <input className="input" type="Email" placeholder="Email" value={email} name="email" onChange={handleChange}/>
+          <input className="input" type="Password" placeholder="Password" value={password} name="password" onChange={handleChange}/>
           <button className="btn" type="submit">Sign In</button>
         </form>
         <hr className="line" />
