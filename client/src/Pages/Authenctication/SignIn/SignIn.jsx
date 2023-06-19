@@ -1,22 +1,26 @@
 import React, { useEffect, useState } from "react";
-import {signInWithPopup} from "firebase/auth";
+import { signInWithPopup } from "firebase/auth";
 import { provider, auth } from "../firebaseconfig";
 import GoogleButton from 'react-google-button'
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 
-// import {  auth } from "../firebaseconfig";
+import {FcGoogle} from 'react-icons/fc'
+import { MdEmail} from 'react-icons/md'
+
+import "./style.scss"
+
 
 const SignIn = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const singInWithGoogle = ()=>{
-    signInWithPopup(auth,provider).then((data)=>{
-        console.log("Successfully Sign In:",data);
+  const singInWithGoogle = () => {
+    signInWithPopup(auth, provider).then((data) => {
+      console.log("Successfully Sign In:", data);
     })
-    .catch((err)=>{
+      .catch((err) => {
         console.log(err.message);
-    })
+      })
 
   }
 
@@ -35,22 +39,25 @@ const SignIn = () => {
       });
   };
 
-  const handleChange = (event)=>{
-    if(event.target.name ==="email")setEmail(event.target.value);
-    else if(event.target.name ==="password")setPassword(event.target.value);
+  const handleChange = (event) => {
+    if (event.target.name === "email") setEmail(event.target.value);
+    else if (event.target.name === "password") setPassword(event.target.value);
   }
 
   return (
-    <div>
+    <div className="container">
       <h1>Sign In </h1>
-      <form onSubmit={signin}>
-        <label htmlFor="email">Enter Your Email Address</label>
-        <input type="email" id="email" placeholder="example@gmail.com" onChange={handleChange} name="email" value={email}/>
-        <label htmlFor="password">Enter Your Password</label>
-        <input type="password" id="password" placeholder="password" onChange={handleChange} name="password" value={password} />
-        <button type="submit">Signin</button>
-      </form>
-      <GoogleButton onClick={singInWithGoogle}/>
+      <div className="siginContainer">
+        <form onSubmit={signin} className="form">
+          <label htmlFor="email" className="title">Email</label>
+          <input className="input" type="email" id="email" placeholder="example@gmail.com" onChange={handleChange} name="email" value={email} />
+          <label htmlFor="password" className="title">Password</label>
+          <input className="input" type="password" id="password" placeholder="password" onChange={handleChange} name="password" value={password} />
+          <button className=" btn" type="submit">Sign In</button>
+        </form>
+        <hr className="linebreak"/>
+        <button className="googlesignin" onClick={singInWithGoogle}><FcGoogle/>Sign In</button>
+      </div>
     </div>
   );
 };

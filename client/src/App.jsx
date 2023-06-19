@@ -3,10 +3,10 @@ import SignIn from './Pages/Authenctication/SignIn/SignIn'
 import Signup from './Pages/Authenctication/SignUp/Signup'
 function App() {
   return (
-    <div>
+    // <div>
       <SignIn/>
-      <Signup/>
-    </div>
+      // {/* <Signup/> */}
+    // </div>
   )
 }
 
