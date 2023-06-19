@@ -1,16 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { signInWithPopup } from "firebase/auth";
-import { provider, auth } from "../firebaseconfig";
-import GoogleButton from 'react-google-button'
+import { provider, auth } from "./firebaseconfig";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 
 import {FcGoogle} from 'react-icons/fc'
-import { MdEmail} from 'react-icons/md'
 
-import "./style.scss"
+import "./styles.scss"
 
 
-const SignIn = () => {
+const SignIn = ({setValue}) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -45,19 +43,18 @@ const SignIn = () => {
   }
 
   return (
-    <div className="container">
-      <h1>Sign In </h1>
-      <div className="siginContainer">
-        <form onSubmit={signin} className="form">
-          <label htmlFor="email" className="title">Email</label>
-          <input className="input" type="email" id="email" placeholder="example@gmail.com" onChange={handleChange} name="email" value={email} />
-          <label htmlFor="password" className="title">Password</label>
-          <input className="input" type="password" id="password" placeholder="password" onChange={handleChange} name="password" value={password} />
-          <button className=" btn" type="submit">Sign In</button>
+    <div className="wrapper">
+        <form onSubmit={signin}  className="form">
+          <input className="input" type="Email" placeholder="Email" value={email} onChange={handleChange}/>
+          <input className="input" type="Password" placeholder="Password" value={password} onChange={handleChange}/>
+          <button className="btn" type="submit">Sign In</button>
         </form>
-        <hr className="linebreak"/>
-        <button className="googlesignin" onClick={singInWithGoogle}><FcGoogle/>Sign In</button>
-      </div>
+        <hr className="line" />
+        <span className="google" onClick={singInWithGoogle}><FcGoogle size={25} className="icon" />Sign In With Google</span>
+        <span className="sign">Don't have an account? <span className="setValue" onClick={()=>{
+          console.log("clieck")
+          setValue('Sign Up')
+        }}>Sign Up</span> </span>
     </div>
   );
 };
