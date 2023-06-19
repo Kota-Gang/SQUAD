@@ -26,7 +26,7 @@ const SignIn = ({setValue}) => {
   const signin = (event) => {
     event.preventDefault();
     const auth = getAuth();
-    signInWithEmailAndPassword(auth, email, password)
+    signInWithEmailAndPassword(auth, "harsh.prayas29jee19@gmail.com", "123456")
       .then((userCredential) => {
         const user = userCredential.user;
         if(user.emailVerified===false){
@@ -38,7 +38,7 @@ const SignIn = ({setValue}) => {
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
-        console.log(error);
+        console.log(error.message);
       });
   };
 
