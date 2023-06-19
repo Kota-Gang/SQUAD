@@ -66,3 +66,41 @@
         border: 1px solid rgb(117, 117, 117);
     }
 }
+
+.verification{
+    background-color: rgb(63, 62, 62);
+    width: 100%;
+    height: 100vh;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    font-size: 3rem;
+  background-image: url("https://ps.w.org/customer-email-verification-for-woocommerce/assets/icon-256x256.png?rev=2253659") no-repeat ;
+  
+    .input{
+        margin: 2rem 0 ;
+        font-size: 1.5rem;
+        background-color: inherit;
+        width: 15rem;
+        border: none;
+        border-bottom: 1px solid rgb(117, 117, 117);
+        &:focus{
+            outline: none;
+            &::placeholder{
+                color: transparent;
+                
+            }
+        }
+    }
+    .btn{
+        margin-bottom: 0;;
+        width: 5rem;
+        height: 2rem;
+        font-size: 1rem;
+        cursor: pointer;
+        &:hover{
+            background-color:rgb(85, 85, 85);
+            border: none;
+        }
+    }
+}
