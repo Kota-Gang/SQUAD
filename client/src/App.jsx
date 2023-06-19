@@ -1,12 +1,16 @@
 import React from 'react'
 import SignIn from './Pages/Authenctication/SignIn/SignIn'
 import Signup from './Pages/Authenctication/SignUp/Signup'
+import { BrowserRouter, Routes, Route } from "react-router-dom"
+
 function App() {
   return (
-    // <div>
-      <SignIn/>
-      // {/* <Signup/> */}
-    // </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/signin" element={<SignIn/>}></Route>
+        <Route path="/signup" element={<Signup/>}></Route>
+      </Routes>
+    </BrowserRouter>
   )
 }
 
