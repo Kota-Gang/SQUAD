@@ -1,16 +1,14 @@
 import React from 'react'
-import SignIn from './Pages/Authenctication/SignIn'
-import Signup from './Pages/Authenctication/SignUp'
-import Home from './Pages/Home/Home'
 import { BrowserRouter, Routes, Route } from "react-router-dom"
+import Home from './Pages/Home/Home'
+import EmailVerification from "./Pages/Authenctication/EmailVerification"
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Home/>}></Route>
-        <Route path="/signin" element={<SignIn/>}></Route>
-        <Route path="/signup" element={<Signup/>}></Route>
+        <Route path="/squadaccountemailverification" element={<EmailVerification/>}></Route>
       </Routes>
     </BrowserRouter>
   )
