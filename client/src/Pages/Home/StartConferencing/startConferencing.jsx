@@ -22,8 +22,8 @@ function StartConferencing({signout,verified,setValue}) {
                 <button className='newMeeting'>New Meeting</button>
                 <input onClick={()=>{
                     joinRef.current.style.display="inline";
-                }} type="text" className='code' placeholder='Enter Code ' />
-                <span ref={joinRef}  className='join '> Join</span>
+                }} type="text" className='code' placeholder='Enter Code' />
+                <span ref={joinRef}  className='join'>Join</span>
             </div>
             <button className='logout' onClick={signout}>Sign Out</button>
             </> : <><h1>Please Verify Your Email First And Sign In Again</h1><h4>Verification Link Has Been Sent To Your Email ID</h4></> }
