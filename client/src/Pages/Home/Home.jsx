@@ -26,7 +26,7 @@ const Home = () => {
   return (
     <div className="container">
       <div className="card">
-        <h1>{value}</h1>
+        <h1 className="heading">{value}</h1>
         {value==='Sign In' && <SignIn setValue={setValue}/>}
         {value==='Sign Up' && <SignUp setValue={setValue}/>}
         {value==='Start Video Conference' && <StartConferencing signout={signout}/> }
