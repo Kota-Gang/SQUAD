@@ -10,26 +10,29 @@ import { onAuthStateChanged } from "firebase/auth";
 const Home = () => {
 
   const [value,setValue] = useState('Sign In');
+  const [verified,setVerified] = useState(false);
 
   onAuthStateChanged(auth, (user) => {
     if (user) {
       setValue('Start Video Conference')
-    } else {
-      setValue('Sign In')
-    }
+      if(user.emailVerified){
+        setVerified(true);
+      }
+    } 
   });
 
   const signout = ()=>{
     auth.signOut();
+    setValue('Sign In')
   }
 
   return (
     <div className="container">
       <div className="card">
-        <h1>{value}</h1>
+        {value!=='Start Video Conference' && <h1>{value}</h1>}
         {value==='Sign In' && <SignIn setValue={setValue}/>}
         {value==='Sign Up' && <SignUp setValue={setValue}/>}
-        {value==='Start Video Conference' && <StartConferencing signout={signout}/> }
+        {value==='Start Video Conference' && <StartConferencing signout={signout} verified={verified} setValue={setValue}/> }
       </div>
       <div className="info">
         

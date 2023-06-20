@@ -26,7 +26,7 @@ const SignIn = ({setValue}) => {
   const signin = (event) => {
     event.preventDefault();
     const auth = getAuth();
-    signInWithEmailAndPassword(auth, "harsh.prayas29jee19@gmail.com", "123456")
+    signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         const user = userCredential.user;
         if(user.emailVerified===false){
@@ -57,7 +57,6 @@ const SignIn = ({setValue}) => {
         <hr className="line" />
         <span className="google" onClick={singInWithGoogle}><FcGoogle size={25} className="icon" />Sign In With Google</span>
         <span className="sign">Don't have an account? <span className="setValue" onClick={()=>{
-          console.log("clieck")
           setValue('Sign Up')
         }}>Sign Up</span> </span>
     </div>

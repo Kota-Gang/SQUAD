@@ -46,10 +46,11 @@ const SignUp = ({ setValue }) => {
               alert(
                 "Email verification link has been sent to your email address"
               );
-              console.log(result)
+              // console.log(result)
             })
             .catch((error) => {
               console.log(error.message);
+              alert("Something Went Wrong Try After Some Time")
             });
           auth.signOut();
         })
@@ -106,7 +107,6 @@ const SignUp = ({ setValue }) => {
         <span
           className="setValue"
           onClick={() => {
-            console.log("clieck");
             setValue("Sign In");
           }}
         >
