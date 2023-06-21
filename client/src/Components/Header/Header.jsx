@@ -10,7 +10,6 @@ const Header = () => {
 
     onAuthStateChanged(auth , (userCredential)=>{
         setUser({photoURL:userCredential.photoURL,userName:userCredential.displayName});
-        console.log(userCredential);
     })
 
     useEffect(()=>{

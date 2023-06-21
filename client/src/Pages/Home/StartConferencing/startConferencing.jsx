@@ -1,8 +1,10 @@
 import React, { useEffect } from 'react'
 import './styles.scss'
 import { useRef } from 'react'
+import { useNavigate } from 'react-router-dom';
 
 function StartConferencing({signout,verified,setValue}) {
+    const navigate = useNavigate();
 
     const joinRef = useRef();
 
@@ -19,7 +21,9 @@ function StartConferencing({signout,verified,setValue}) {
         <div className='homeContainer'>
             {verified ? <>
             <div className='homeWrapper'>
-                <button className='newMeeting'>New Meeting</button>
+                <button className='newMeeting' onClick={()=>{
+                    navigate('/meet')
+                }}>New Meeting</button>
                 <input onClick={()=>{
                     joinRef.current.style.display="inline";
                 }} type="text" className='code' placeholder='Enter Code' />
