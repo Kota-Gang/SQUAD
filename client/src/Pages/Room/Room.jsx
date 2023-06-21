@@ -51,7 +51,7 @@ const Room = () => {
       <input className="callInput" name="callInput" type="text" ref={callInput} />
       <div className="mediaScreen">
         <video className="media" autoPlay ref={webcamVideo} />
-        <video className="media" ref={remoteVideo} />
+        <video className="media" autoPlay ref={remoteVideo} />
       </div>
       <div className="controls">
         <button className="btn" ref={webcamButton} onClick={handleWebCam}> Enable Video </button>
