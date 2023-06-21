@@ -5,7 +5,7 @@
 // const answerButton = document.querySelector('#answerButton');
 // const remoteVideo = document.querySelector('#remoteVideo');
 // const hangupButton = document.querySelector('#hangupButton');
-import {BsCameraVideo } from "react-icons/bs";
+// import {BsCameraVideo,ImPhoneHangUp } from "react-icons/bs";
 
 import { useEffect, useRef, useState } from "react";
 import "./styles.scss";
@@ -54,10 +54,10 @@ const Room = () => {
         <video className="media" ref={remoteVideo} />
       </div>
       <div className="controls">
-        <button className="btn" ref={webcamButton} onClick={handleWebCam}> Enable video </button>
-        <button className="btn" ref={callButton} onClick={handleCall}> call <BsCameraVideo/> </button>
+        <button className="btn" ref={webcamButton} onClick={handleWebCam}> Enable Video </button>
+        <button className="btn" ref={callButton} onClick={handleCall}> call  </button>
         <button className="btn" ref={answerButton} onClick={ handleIncomingCall} > answer </button>
-        <button className="btn" ref = {hangupButton}   > Hang up </button>
+        <button className="btn" ref = {hangupButton}   > Hang Up </button>
       </div>
     </div>
   );

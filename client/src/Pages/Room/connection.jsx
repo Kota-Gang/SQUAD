@@ -1,5 +1,5 @@
 import { firestore } from "../Authenctication/firebaseconfig";
-import { doc , setDoc ,collection, addDoc, onSnapshot, getDoc} from "firebase/firestore"; 
+import { doc , setDoc ,collection, addDoc, onSnapshot, getDoc, getDocs} from "firebase/firestore"; 
 
 const servers = {
     iceServers: [
@@ -120,8 +120,13 @@ export const answerCall = async (callId) => {
 
     }
 
-    const docSnap = await getDoc(callDoc);
-    const callData = docSnap.data();
+    const docSnap = await getDocs(collection(firestore,"calls"));
+    let callData ;
+    docSnap.forEach((doc)=>{
+        console.log(doc.data().offer);
+        callData = doc.data();
+    })
+    // const callData = docSnap.data();
 
     // setting the remote video with offerDescription
     const offerDescription = callData.offer;
