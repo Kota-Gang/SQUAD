@@ -1,0 +1,45 @@
+.roomContainer{
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    .callInput{
+      width: 20rem;
+      height: 2rem;
+    }
+    .mediaScreen{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        width: 100%;
+        height:80%;
+        .media{
+            margin: 5%;
+            width: 40%;
+            height: 80%;
+            background-color: black;
+        }
+    }
+    .controls{
+      width:100%;
+      height:20%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+     
+      .btn{
+        margin: 0 1rem;
+        width: 6rem;
+        height: 3rem;
+        background:rgb(150, 26, 26);
+        border:none;
+        border-radius: 4px;
+        &:hover{
+            background:rgb(182, 20, 20);
+            cursor:pointer;
+        }
+      }
+       
+    }
+}
+
