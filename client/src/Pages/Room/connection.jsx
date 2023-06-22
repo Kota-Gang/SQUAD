@@ -1,5 +1,8 @@
-import { firestore } from "../Authenctication/firebaseconfig";
-import { doc , setDoc ,collection, addDoc, onSnapshot, getDoc, getDocs} from "firebase/firestore"; 
+import { app } from "../Authenctication/firebaseconfig";
+import { doc , setDoc ,collection, addDoc, onSnapshot, getDoc, getDocs,getFirestore} from "firebase/firestore"; 
+
+const firestore =  getFirestore(app);
+
 
 const servers = {
     iceServers: [
@@ -79,6 +82,7 @@ export const startCall = async () => {
 
     onSnapshot(callDoc,snapshot => {
         const data = snapshot.data();
+        console.log(snapshot);
 
         if (!pc.currentRemoteDescription && data.answer) {
             const answerDescription = new RTCSessionDescription(data.answer);
@@ -94,7 +98,11 @@ export const startCall = async () => {
                     pc.addIceCandidate(candidate);
                 }
             })
+        },(err)=>{
+            console.log(err);
         })
+    },(err)=>{
+        console.log(err);
     })
 
     
@@ -123,8 +131,9 @@ export const answerCall = async (callId) => {
     const docSnap = await getDocs(collection(firestore,"calls"));
     let callData ;
     docSnap.forEach((doc)=>{
-        console.log(doc.data().offer);
-        callData = doc.data();
+        if(doc.id===callId){
+            callData = doc.data();
+        }
     })
     // const callData = docSnap.data();
 
@@ -147,6 +156,7 @@ export const answerCall = async (callId) => {
     await setDoc(callDoc,{answer})
 
     onSnapshot(offerCandidates,snapshot => {
+        console.log(snapshot);
         snapshot.docChanges().forEach(change => {
 
             if (change.type === 'added') {
@@ -155,5 +165,7 @@ export const answerCall = async (callId) => {
 
             }
         })
+    },(err)=>{
+        console.log(err);
     })
 }
