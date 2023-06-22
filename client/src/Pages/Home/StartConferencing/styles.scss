@@ -19,8 +19,13 @@
             border: none;
             border-radius: 4px;
             margin: 2rem 0 1rem 0;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            background: linear-gradient(to right, #22a06a, #1e8f5b);
+   
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
             &:hover{
                 background-color: rgb(33, 128, 97);
+                transform: scale(1.05);
 
             }
 
@@ -36,6 +41,7 @@
             border-radius: 4px;
             padding-left: 10px;
             margin: 2rem 0 1rem 0;
+            transition: border-color 0.3s ease;
 
             &::placeholder {
                 color: rgb(32, 125, 79);
@@ -62,6 +68,10 @@
         border: none;
         background-color: rgb(150, 22, 22);
         color: rgb(201, 206, 203);
+        transition: border-color 0.3s ease;
+        &:hover {
+            background-color: rgb(185, 32, 32);
+          }
     }
 
     .join {
@@ -71,9 +81,16 @@
         margin: 2rem 2rem;
         width: fit-content;
         cursor: pointer;
+        transition: color 0.3s ease;
         &:hover{
             color: rgb(8, 168, 231);
         
         }
     }
 }
+
+
+  
+  
+  
+  

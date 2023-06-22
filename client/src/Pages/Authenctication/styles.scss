@@ -1,73 +1,95 @@
-.wrapper{
+.wrapper {
     display: flex;
     flex-direction: column;
     align-items: center;
-    .form{
+
+    .form {
         padding-top: 2rem;
         width: 80%;
         margin: 0;
-        .input{
-            margin: 2rem 0 ;
+
+        .input {
+            margin: 2rem 0;
             font-size: 1.25rem;
             background-color: inherit;
             width: 100%;
             border: none;
             border-bottom: 1px solid rgb(117, 117, 117);
-            &:focus{
+            transition: border-bottom-color 0.3s ease;
+
+            &:focus {
                 outline: none;
-                &::placeholder{
+
+                &::placeholder {
                     color: transparent;
-                    
+
                 }
             }
         }
-        
-        .btn{
-            margin-bottom: 0;;
+
+        .btn {
+            margin-bottom: 0;
+            ;
             width: 100%;
             height: 2rem;
             font-size: 1rem;
             cursor: pointer;
-            &:hover{
-                background-color:rgb(85, 85, 85);
+            background-color: rgb(138, 99, 201);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            transition: background-color 0.3s ease;
+
+            &:hover {
+                background-color: rgb(85, 85, 85);
                 border: none;
             }
         }
     }
-    .google{
+
+    .google {
         cursor: pointer;
         display: flex;
         justify-content: center;
         width: 80%;
         background-color: rgb(119, 119, 119);
         border-radius: 2px;
-        height: 2rem;
+        height: 3rem;
         align-items: center;
-        .icon{
+        color: white;
+  transition: background-color 0.3s ease;
+
+        .icon {
             margin: 0 .5rem;
         }
-        &:hover{
-            background-color:rgb(85, 85, 85);
+
+        &:hover {
+            background-color: rgb(85, 85, 85);
         }
     }
-    .sign{
+
+    .sign {
         width: 80%;
         color: rgb(136, 136, 136);
         margin: 2rem;
-        .setValue{
+
+        .setValue {
             text-decoration: underline;
             color: rgb(138, 99, 201);
             cursor: pointer;
+            transition: color 0.3s ease;
+
         }
     }
-    .line{
+
+    .line {
         width: 30%;
         margin: 2rem 0;
         border: 1px solid rgb(117, 117, 117);
     }
 }
 
-.verification{
+.verification {
     background-color: rgb(63, 62, 62);
     width: 100%;
     height: 100vh;
@@ -75,46 +97,81 @@
     display: flex;
     flex-direction: column;
     font-size: 3rem;
-  background-image: url("https://ps.w.org/customer-email-verification-for-woocommerce/assets/icon-256x256.png?rev=2253659") no-repeat ;
-  
-    .input{
-        margin: 2rem 0 ;
+    background-image: url("https://ps.w.org/customer-email-verification-for-woocommerce/assets/icon-256x256.png?rev=2253659") no-repeat;
+
+    .input {
+        margin: 2rem 0;
         font-size: 1.5rem;
         background-color: inherit;
         width: 10rem;
         border: none;
         border-bottom: 1px solid rgb(117, 117, 117);
-        &:focus{
+
+        &:focus {
             outline: none;
-            &::placeholder{
+
+            &::placeholder {
                 color: transparent;
-                
+
             }
         }
     }
-    .btn{
-        margin-bottom: 0;;
+
+    .btn {
+        margin-bottom: 0;
+        ;
         width: 5rem;
         height: 2rem;
         font-size: 1rem;
         cursor: pointer;
-        &:hover{
-            background-color:rgb(85, 85, 85);
+
+        &:hover {
+            background-color: rgb(85, 85, 85);
             border: none;
         }
     }
 }
+
 .wrapper {
-    -webkit-animation: animatezoom 1s;
-    animation: animatezoom 1s
+    animation: zoomin 1s ease-in-out, fadein 1s ease-in-out;
   }
   
-  @-webkit-keyframes animatezoom {
-    from {-webkit-transform: scale(0)} 
-    to {-webkit-transform: scale(1)}
+  @keyframes zoomin {
+    from {
+      transform: scale(0);
+      opacity: 0;
+    }
+    to {
+      transform: scale(1);
+      opacity: 1;
+    }
   }
-    
-  @keyframes animatezoom {
-    from {transform: scale(0)} 
-    to {transform: scale(1)}
-  } 
+  
+  @keyframes fadein {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  
+  
+  /* Additional Animation */
+  .form,
+.google,
+.sign,
+.line {
+  animation: slideup 1s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+}
+
+@keyframes slideup {
+  from {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
