@@ -12,5 +12,6 @@ Joining Page (some feature still need to update)
 ![Screenshot (42)](https://github.com/Kota-Gang/SQUAD/assets/82997237/a09a4a81-fddd-48ad-93a5-55886d40f06c)
 
 Room Page (currently under Development)
-![Screenshot (43)](https://github.com/Kota-Gang/SQUAD/assets/82997237/5a28ce06-f459-4f6c-9aaa-86c0f4e93d21)
+![image](https://github.com/Kota-Gang/SQUAD/assets/82997237/1db9aaea-3f92-4c8c-941f-2d71f2ff6618)
+
 
