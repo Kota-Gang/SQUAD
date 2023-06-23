@@ -20,7 +20,7 @@ let remoteStream = null
 
 
 
-export const startWebCam = async (remoteVideo) => {
+export const startWebCam = async () => {
     
 
     // setting local stream to the video from our camera
