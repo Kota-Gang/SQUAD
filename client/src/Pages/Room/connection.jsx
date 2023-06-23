@@ -1,5 +1,5 @@
 import { app } from "../Authenctication/firebaseconfig";
-import { doc , setDoc ,collection, addDoc, onSnapshot, getDoc, getDocs,query,where,getFirestore, getDocFromServer, documentId} from "firebase/firestore"; 
+import { doc , setDoc ,collection, addDoc, onSnapshot, getDoc,getFirestore} from "firebase/firestore"; 
 
 const firestore =  getFirestore(app);
 
@@ -39,9 +39,9 @@ export const startWebCam = async () => {
     })
 
     pc.addEventListener('track', event => {
-        console.log('Got remote track:', event.streams[0]);
+        // console.log('Got remote track:', event.streams[0]);
         event.streams[0].getTracks().forEach(track => {
-          console.log('Add a track to the remoteStream:', track);
+        //   console.log('Add a track to the remoteStream:', track);
           remoteStream.addTrack(track);
         });
       });
@@ -53,18 +53,11 @@ export const startWebCam = async () => {
 }
 
 
-export const startCall = async () => {
-    let callDoc = doc(collection(firestore,"calls"));
-let offerCandidates = collection(callDoc,'offerCandidates');
-let answerCandidates = collection(callDoc,'answerCandidates');
+export const startCall = async (roomCode) => {
+    let callDoc = doc(collection(firestore,"room"),roomCode);
+    let offerCandidates = collection(callDoc,'offerCandidates');
+    let answerCandidates = collection(callDoc,'answerCandidates');
 
-    // referencing firebase collections
-    // const callDoc = firestore.collection('calls').doc();
-
-    // setting the input value to the calldoc id
-    
-    // get candidiates for caller and save to db
-    console.log(callDoc);
     pc.onicecandidate = event => {
         event.candidate && addDoc(offerCandidates,event.candidate.toJSON());
     }
@@ -81,7 +74,7 @@ let answerCandidates = collection(callDoc,'answerCandidates');
         },
       };
 
-    await setDoc(callDoc,roomWithOffer);
+    await setDoc(callDoc,roomWithOffer,{merge:true});
 
     
     // listening to changes in firestore and update the streams accordingly
@@ -91,7 +84,7 @@ let answerCandidates = collection(callDoc,'answerCandidates');
         // console.log("snap")
 
         if (!pc.currentRemoteDescription && data.answer) {
-            console.log("answer received on caller side:",data.answer)
+            // console.log("answer received on caller side:",data.answer)
             const answerDescription = new RTCSessionDescription(data.answer);
             pc.setRemoteDescription(answerDescription);
         }
@@ -102,7 +95,7 @@ let answerCandidates = collection(callDoc,'answerCandidates');
             snapshot.docChanges().forEach(change => {
 
                 if (change.type === 'added') {
-                    console.log("Candidate received on Caller Side:",change.doc.data());
+                    // console.log("Candidate received on Caller Side:",change.doc.data());
                     const candidate = new RTCIceCandidate(change.doc.data());
                     pc.addIceCandidate(candidate);
                 }
@@ -115,24 +108,19 @@ let answerCandidates = collection(callDoc,'answerCandidates');
     })
 
     
-    return callDoc.id;  
-    // return "dkfja";
-    
 }
 
 
-export const answerCall = async (callId) => {
-    typeof(callId)
-    let callDoc = doc(collection(firestore,"calls"),callId);
+export const answerCall = async (roomCode) => {
+    let callDoc = doc(collection(firestore,"room"),roomCode);
     let offerCandidates = collection(callDoc,'offerCandidates');
     let answerCandidates = collection(callDoc,'answerCandidates');
 
 
-    console.log(callDoc)
+    // console.log(callDoc)
     // here we listen to the changes and add it to the answerCandidates
     pc.onicecandidate = event => {
         event.candidate && addDoc(answerCandidates,event.candidate.toJSON());
-
     }
 
 
@@ -141,7 +129,7 @@ export const answerCall = async (callId) => {
     if(docSnap.exists()){
         let callData =docSnap.data();
         const offerDescription = callData.offer;
-        console.log("offer received on answer side:",callData.offer);
+        // console.log("offer received on answer side:",callData.offer);
         await pc.setRemoteDescription(new RTCSessionDescription(offerDescription));
     }
 
@@ -169,7 +157,7 @@ export const answerCall = async (callId) => {
 
             if (change.type === 'added') {
                 let data = change.doc.data();
-                console.log("received Candidate on Answer side:",data);
+                // console.log("received Candidate on Answer side:",data);
                 pc.addIceCandidate(new RTCIceCandidate(data));
 
             }
