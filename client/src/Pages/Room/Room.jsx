@@ -20,9 +20,13 @@ const Room = () => {
   const remoteVideo = useRef();
   const hangupButton = useRef();
 
+  const [remoteStream,setRemoteStream] = useState(null);
+
   const handleWebCam = async()=>{
 
     let {localStream,remoteStream} = await startWebCam();
+
+    // // setRemoteStream(remoteStream);
     
     webcamVideo.current.srcObject = localStream;
     remoteVideo.current.srcObject = remoteStream;
@@ -40,10 +44,14 @@ const Room = () => {
   }
 
   const handleIncomingCall = async()=>{
-    await answerCall(callInput.current.value);
+    let id = callInput.current.value;
+    await answerCall(id);
+    // console.log(remoteStream);
   }
 
-  useEffect(() => {}, []);
+  useEffect(() => {
+    console.log("romm:",remoteStream)
+  }, [remoteStream]);
 
   return (
     <div className="roomContainer">
@@ -51,7 +59,7 @@ const Room = () => {
       <input className="callInput" name="callInput" type="text" ref={callInput} />
       <div className="mediaScreen">
         <video className="media" autoPlay ref={webcamVideo} />
-        <video className="media" autoPlay ref={remoteVideo} />
+        <video className="media" autoPlay ref={remoteVideo} id="remoteVideo" />
       </div>
       <div className="controls">
         <button className="btn" ref={webcamButton} onClick={handleWebCam}> Enable Video </button>
