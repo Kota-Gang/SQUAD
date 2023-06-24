@@ -1,5 +1,6 @@
-import React from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { BrowserRouter, Routes, Route,useLocation } from "react-router-dom";
+import { useSelector} from 'react-redux'
 import Home from "./Pages/Home/Home";
 import EmailVerification from "./Pages/Authenctication/emailVerification";
 import Footer from "./Components/Footer/Footer";
@@ -8,9 +9,14 @@ import "../src/Pages/Authenctication/firebaseconfig";
 import Room from "./Pages/Room/Room";
 
 function App() {
+  const roomComponent = useSelector((state)=>state.roomComponent.value)
+ 
+  useEffect(()=>{
+  },[])
+  
   return (
-    <BrowserRouter>
-      {/* <Header /> */}
+   <>
+     {  !roomComponent &&  <Header />}
       <Routes>
         <Route path="/" element={<Home />} />
         <Route
@@ -19,8 +25,8 @@ function App() {
         />
         <Route path="/meet/:id" element={<Room />} />
       </Routes>
-      {/* <Footer /> */}
-    </BrowserRouter>
+      { !roomComponent && <Footer />}
+      </>
   );
 }
 

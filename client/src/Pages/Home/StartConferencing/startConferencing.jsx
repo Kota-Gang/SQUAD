@@ -2,27 +2,31 @@ import React, { useEffect, useState } from 'react'
 import './styles.scss'
 import { useRef } from 'react'
 import { useNavigate} from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 import { app } from "..//../Authenctication/firebaseconfig";
 import { doc ,collection, getFirestore, getDoc, setDoc} from "firebase/firestore"; 
+import { hideHeaderAndFooter,showHeaderAndFooter } from '../../../store/roomSlice';
 
 const firestore =  getFirestore(app);
 
 function StartConferencing({signout,verified,setValue}) {
     const navigate = useNavigate();
     const joinRef = useRef();
-
+    const dispatch = useDispatch();
     const [roomCode,setRoomCode] = useState('');
 
     const createRoom = async()=>{
         try{
             let callDoc =  doc(collection(firestore,"room"));  
             await setDoc(callDoc,{"Date" : new Date().getDate(),"Time": new Date().getTime() })
-            if(callDoc.id)navigate('/meet/' + callDoc.id,{
+            if(callDoc.id){
+                dispatch(hideHeaderAndFooter())
+                navigate('/meet/' + callDoc.id,{
                state: {
                     id:callDoc.id,
                     status:"created"
                 }
-            });
+            });}
         }
         catch(err){
             console.log(err.message);
@@ -61,7 +65,7 @@ function StartConferencing({signout,verified,setValue}) {
                 setValue('Sign In');
             },5000)
         }
-       
+        // dispatch(showHeaderAndFooter())
     },[])
 
     return (
