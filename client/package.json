@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://mayankratre10.github.io/SQUAD/",
+  "homepage": "https://kota-gang.github.io/SQUAD/",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
