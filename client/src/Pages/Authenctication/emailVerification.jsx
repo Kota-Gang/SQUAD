@@ -24,7 +24,7 @@ const EmailVerification = () => {
           .then((result) => {
             window.localStorage.removeItem('emailForSignIn');
             setTimeout(() => {
-              navigate('/');
+              navigate('/SQUAD/');
             }, 2000);
           })
           .catch((error) => {

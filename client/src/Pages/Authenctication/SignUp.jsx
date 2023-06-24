@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { provider, auth } from "./firebaseconfig";
 import {
   sendSignInLinkToEmail,
@@ -22,7 +22,6 @@ const SignUp = ({ setValue }) => {
   const singInWithGoogle = () => {
     signInWithPopup(auth, provider)
       .then((data) => {
-        console.log("Successfully Sign In:", data);
       })
       .catch((err) => {
         console.log(err.message);
@@ -46,7 +45,6 @@ const SignUp = ({ setValue }) => {
               alert(
                 "Email verification link has been sent to your email address"
               );
-              // console.log(result)
             })
             .catch((error) => {
               console.log(error.message);

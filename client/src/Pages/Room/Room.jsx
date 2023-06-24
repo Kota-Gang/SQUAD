@@ -1,7 +1,9 @@
-import { useEffect, useRef, useState } from "react";
-import { useSearchParams, useLocation, useNavigate } from "react-router-dom";
+import { useEffect, useRef} from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import "./styles.scss";
 import { startWebCam, startCall, answerCall, hangUp } from "./connection";
+import { useDispatch } from 'react-redux';
+import { showHeaderAndFooter } from "../../store/roomSlice";
 import Popup from "../../Components/popup/Popup";
 
 const Room = () => {
@@ -33,19 +35,22 @@ const Room = () => {
   };
 
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const endMeet = async () => {
     const tracks = webcamVideo.current.srcObject.getTracks();
     tracks.forEach((track) => {
       track.stop();
     });
     await hangUp(state.id);
-    navigate("/");
+    dispatch(showHeaderAndFooter)
+    navigate("/SQUAD/");
   };
 
   const { state } = useLocation();
   useEffect(() => {
     startMeet(state.id);
   }, []);
+
 
   return (
     <>

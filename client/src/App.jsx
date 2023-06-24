@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
-import { BrowserRouter, Routes, Route,useLocation } from "react-router-dom";
-import { useSelector} from 'react-redux'
+import React, { useEffect } from "react";
+import { Routes, Route } from "react-router-dom";
+import { useSelector } from "react-redux";
 import Home from "./Pages/Home/Home";
 import EmailVerification from "./Pages/Authenctication/emailVerification";
 import Footer from "./Components/Footer/Footer";
@@ -9,24 +9,23 @@ import "../src/Pages/Authenctication/firebaseconfig";
 import Room from "./Pages/Room/Room";
 
 function App() {
-  const roomComponent = useSelector((state)=>state.roomComponent.value)
- 
-  useEffect(()=>{
-  },[])
-  
+  const roomComponent = useSelector((state) => state.roomComponent.value);
+
+  useEffect(() => {}, []);
+
   return (
-   <>
-     {  !roomComponent &&  <Header />}
-      <Routes>
-        <Route path="/" element={<Home />} />
+    <>
+      {!roomComponent && <Header />}
+      <Routes >
+        <Route path="/SQUAD" element={<Home />} />
         <Route
-          path="/squadaccountemailverification"
+          path="/SQUAD/squadaccountemailverification"
           element={<EmailVerification />}
         />
-        <Route path="/meet/:id" element={<Room />} />
+        <Route path="/SQUAD/meet/:id" element={<Room />} />
       </Routes>
-      { !roomComponent && <Footer />}
-      </>
+      {!roomComponent && <Footer />}
+    </>
   );
 }
 

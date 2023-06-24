@@ -21,7 +21,7 @@ function StartConferencing({signout,verified,setValue}) {
             await setDoc(callDoc,{"Date" : new Date().getDate(),"Time": new Date().getTime() })
             if(callDoc.id){
                 dispatch(hideHeaderAndFooter())
-                navigate('/meet/' + callDoc.id,{
+                navigate('/SQUAD/meet/' + callDoc.id,{
                state: {
                     id:callDoc.id,
                     status:"created"
@@ -38,7 +38,7 @@ function StartConferencing({signout,verified,setValue}) {
             let callDoc = doc(collection(firestore,"room"),roomCode);  
             let docSnap = await getDoc(callDoc);
             if(docSnap.exists()){
-                if(callDoc.id)navigate('/meet/' + callDoc.id,{
+                if(callDoc.id)navigate('/SQUAD/meet/' + callDoc.id,{
                     state: {
                          id:callDoc.id,
                          status:"joined"
@@ -65,7 +65,6 @@ function StartConferencing({signout,verified,setValue}) {
                 setValue('Sign In');
             },5000)
         }
-        // dispatch(showHeaderAndFooter())
     },[])
 
     return (
