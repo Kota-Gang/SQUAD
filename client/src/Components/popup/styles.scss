@@ -1,0 +1,70 @@
+.PopUpwindow{
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    margin: 30vh  0 0 1rem;
+    z-index: 2;
+    width: 30%;
+    height: 60%;
+    border-radius: 20px;
+    background-color: white;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    .heading{
+        color: black;
+        margin-bottom: 2rem;
+        align-self: flex-start;
+        font-size: 1.5rem;
+    }
+    .data{
+        align-self: flex-start;
+        width: 100%;
+        height: 3rem;
+        background-color: rgb(224, 220, 220);
+        border-radius: 5px;
+        align-items: center;
+        padding: 10px;
+        color: black;
+        font-size:1.25rem;
+        justify-content:space-between;
+        display: flex;
+        .copy{
+            cursor: pointer;
+            height: fit-content;
+            width: fit-content;
+            margin: 0;
+            border-radius: 2px;
+        }
+    }
+    .info{
+        color: black;
+        margin-top: 2rem;
+        align-self: flex-start;
+        font-size: 1.25rem;
+    }
+    .close{
+        width: 5rem;
+        height: 2.5rem;
+        background-color: #007bff;
+        border: none;
+        border-radius: 5px;
+        margin-top: 2rem;
+        align-self: flex-end;
+        // font-weight: bold;
+        font-size: 1rem;
+        &:hover{
+            cursor: pointer;
+            background-color: #0471e6;
+        }
+    }
+    .copyToClipBoard{
+        display: none;
+        background-color: rgb(61, 61, 61);
+        color: rgb(255, 255, 255);
+        position: absolute;
+        border-radius: 5px;
+        width: fit-content;
+        padding: 0 10px;
+    }
+}

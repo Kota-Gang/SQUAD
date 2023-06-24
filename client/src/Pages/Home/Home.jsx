@@ -19,11 +19,14 @@ const Home = () => {
         setVerified(true);
       }
     } 
+    else{
+      if(value==='Start Video Conference')setValue('Sign In')
+    }
   });
 
   const signout = ()=>{
-    auth.signOut();
     setValue('Sign In')
+    auth.signOut();
   }
 
   return (

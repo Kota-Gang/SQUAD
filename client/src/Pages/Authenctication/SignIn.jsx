@@ -15,7 +15,7 @@ const SignIn = ({setValue}) => {
 
   const singInWithGoogle = () => {
     signInWithPopup(auth, provider).then((data) => {
-      console.log("Successfully Sign In:", data);
+      // console.log("Successfully Sign In:", data);
     })
       .catch((err) => {
         console.log(err.message);
