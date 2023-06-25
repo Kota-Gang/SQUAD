@@ -52,10 +52,12 @@
         margin-top: 2rem;
         align-self: flex-end;
         // font-weight: bold;
+        transition: background-color 0.3s ease, transform 0.3s ease;
         font-size: 1rem;
         &:hover{
             cursor: pointer;
             background-color: #0471e6;
+            transform: scale(1.09);
         }
     }
     .copyToClipBoard{

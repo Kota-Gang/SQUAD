@@ -7,7 +7,6 @@ import {
   onSnapshot,
   getDoc,
   getFirestore,
-  getDocs,
 } from "firebase/firestore";
 
 const firestore = getFirestore(app);
@@ -21,13 +20,14 @@ const servers = {
   iceCandidatePoolSize: 10,
 };
 
-const pc = new RTCPeerConnection(servers);
+let pc = new RTCPeerConnection(servers);
 let localStream = null;
 let remoteStream = null;
 
 export const startWebCam = async () => {
   localStream = await navigator.mediaDevices.getUserMedia({
     video: true,
+    audio:true
   });
   remoteStream = new MediaStream();
 
@@ -162,6 +162,7 @@ export const  hangUp = async(roomCode)=>{
   
     if (pc) {
       pc.close();
+      pc=null;
     }
 
     
