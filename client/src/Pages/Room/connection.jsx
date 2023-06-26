@@ -20,15 +20,17 @@ const servers = {
   iceCandidatePoolSize: 10,
 };
 
-let pc = new RTCPeerConnection(servers);
 let localStream = null;
 let remoteStream = null;
+let pc = null;
 
 export const startWebCam = async () => {
+  pc = new RTCPeerConnection(servers);
   localStream = await navigator.mediaDevices.getUserMedia({
     video: true,
-    audio:true
+    audio: true,
   });
+
   remoteStream = new MediaStream();
 
   localStream.getTracks().forEach((track) => {
@@ -153,17 +155,13 @@ export const answerCall = async (roomCode) => {
   );
 };
 
-export const  hangUp = async(roomCode)=>{
-    
-  
-    if (remoteStream) {
-      remoteStream.getTracks().forEach(track => track.stop());
-    }
-  
-    if (pc) {
-      pc.close();
-      pc=null;
-    }
-
-    
+export const hangUp = async (roomCode) => {
+  if (remoteStream) {
+    remoteStream.getTracks().forEach((track) => track.stop());
   }
+
+  if (pc) {
+    pc.close();
+    pc = null;
+  }
+};
