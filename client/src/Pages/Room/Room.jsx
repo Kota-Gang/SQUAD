@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { redirect, useLocation, useNavigate } from "react-router-dom";
 import "./styles.scss";
-import { startWebCam, startCall, answerCall, hangUp } from "./connection";
+import { startWebCam, startCall, answerCall, hangUp,micOff,micOn,cameraOff,cameraOn } from "./connection";
 import { useDispatch } from "react-redux";
 import { showHeaderAndFooter } from "../../store/roomSlice";
 import Popup from "../../Components/popup/Popup";
@@ -26,12 +26,20 @@ const Room = () => {
   const cameraToggle = async(e) => {
     if(cameraColor == "#2EA3F1" )setCameracolor("#A80000");
     else setCameracolor("#2EA3F1");
+    if(camera===true){
+      await cameraOff();
+    }
+    else await cameraOn();
     setCamera(!camera)
   };
 
-  const micToggle = () => {
+  const micToggle = async() => {
     if(micColor == "#2EA3F1" )setMiccolor("#A80000");
     else setMiccolor("#2EA3F1");
+    if(mic===true){
+      await micOff();
+    }
+    else await micOn();
     setMic(!mic);
   };
 
