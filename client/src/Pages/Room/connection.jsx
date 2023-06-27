@@ -24,11 +24,30 @@ let localStream = null;
 let remoteStream = null;
 let pc = null;
 
+export const micOff = async () => {
+  let audioTrack = localStream.getAudioTracks();
+  audioTrack.forEach((track)=>track.enabled = false)
+};
+export const micOn = async () => {
+  let audioTrack = localStream.getAudioTracks();
+  audioTrack.forEach((track)=>track.enabled = false)
+};
+
+export const cameraOff = async () => {
+  let videoTrack = localStream.getVideoTracks();
+  videoTrack.forEach((track)=>track.enabled = false)
+};
+export const cameraOn = async () => {
+  let videoTrack = localStream.getVideoTracks();
+  videoTrack.forEach((track)=>track.enabled = true)
+};
+
 export const startWebCam = async () => {
   pc = new RTCPeerConnection(servers);
   localStream = await navigator.mediaDevices.getUserMedia({
-    video: true,
-    audio: true,
+    video: { width: { min: 1024, ideal: 1280, max: 1920 },height: { min: 576, ideal: 720, max: 1080 }},
+    audio:true
+
   });
 
   remoteStream = new MediaStream();
