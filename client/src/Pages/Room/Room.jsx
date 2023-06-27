@@ -47,6 +47,7 @@ const Room = () => {
     let { localStream, remoteStream } = await startWebCam();
 
     webcamVideo.current.srcObject = localStream;
+    webcamVideo.current.srcObject = localStream;
     remoteVideo.current.srcObject = remoteStream;
   };
 
@@ -87,7 +88,7 @@ const Room = () => {
     <>
       <div className="roomContainer">
         <div className="mediaScreen">
-          <video className="userMedia" autoPlay ref={webcamVideo} />
+          <video className="userMedia" muted autoPlay ref={webcamVideo} />
           <video className="remoteMedia" autoPlay ref={remoteVideo} />
         </div>
         <div className="controls">
