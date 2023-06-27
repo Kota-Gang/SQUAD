@@ -24,6 +24,24 @@ let pc = new RTCPeerConnection(servers);
 let localStream = null;
 let remoteStream = null;
 
+export const micOff = async () => {
+  let audioTrack = localStream.getAudioTracks();
+  audioTrack.forEach((track)=>track.enabled = false)
+};
+export const micOn = async () => {
+  let audioTrack = localStream.getAudioTracks();
+  audioTrack.forEach((track)=>track.enabled = false)
+};
+
+export const cameraOff = async () => {
+  let videoTrack = localStream.getVideoTracks();
+  videoTrack.forEach((track)=>track.enabled = false)
+};
+export const cameraOn = async () => {
+  let videoTrack = localStream.getVideoTracks();
+  videoTrack.forEach((track)=>track.enabled = true)
+};
+
 export const startWebCam = async () => {
   localStream = await navigator.mediaDevices.getUserMedia({
     video: { width: { min: 1024, ideal: 1280, max: 1920 },height: { min: 576, ideal: 720, max: 1080 }},
@@ -153,17 +171,13 @@ export const answerCall = async (roomCode) => {
   );
 };
 
-export const  hangUp = async(roomCode)=>{
-    
-  
-    if (remoteStream) {
-      remoteStream.getTracks().forEach(track => track.stop());
-    }
-  
-    if (pc) {
-      pc.close();
-      pc=null;
-    }
-
-    
+export const hangUp = async (roomCode) => {
+  if (remoteStream) {
+    remoteStream.getTracks().forEach((track) => track.stop());
   }
+
+  if (pc) {
+    pc.close();
+    pc = null;
+  }
+};
