@@ -11,7 +11,8 @@ Sign Up Page
 Joining Page (some feature still need to update)
 ![Screenshot (42)](https://github.com/Kota-Gang/SQUAD/assets/82997237/a09a4a81-fddd-48ad-93a5-55886d40f06c)
 
-Room Page (currently under Development)
-![image](https://github.com/Kota-Gang/SQUAD/assets/82997237/1db9aaea-3f92-4c8c-941f-2d71f2ff6618)
+Room Page (currently under Development but functional)
+![Screenshot (46)](https://github.com/Kota-Gang/SQUAD/assets/82997237/a029e0bb-d941-4d3a-bf06-b17388c01a84)
+
 
 
