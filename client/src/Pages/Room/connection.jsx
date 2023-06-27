@@ -30,7 +30,7 @@ export const micOff = async () => {
 };
 export const micOn = async () => {
   let audioTrack = localStream.getAudioTracks();
-  audioTrack.forEach((track)=>track.enabled = false)
+  audioTrack.forEach((track)=>track.enabled = true)
 };
 
 export const cameraOff = async () => {
