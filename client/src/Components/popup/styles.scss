@@ -1,8 +1,9 @@
+@import '../../mixins.scss';
 .PopUpwindow{
     display: flex;
     flex-direction: column;
     position: absolute;
-    margin: 30vh  0 0 1rem;
+    margin: 100px  0 0 1rem;
     z-index: 2;
     width: 30%;
     height: 60%;
@@ -11,22 +12,34 @@
     align-items: center;
     justify-content: center;
     padding: 2rem;
+    @include lg{
+        width: 300px;
+        height: 350px;
+    }
+    @include xsm{
+        margin-left: 2px;
+        height: 300px;
+    }
     .heading{
         color: black;
         margin-bottom: 2rem;
         align-self: flex-start;
         font-size: 1.5rem;
+        @include xsm{
+           font-size: 1.25rem;
+        }
     }
     .data{
         align-self: flex-start;
         width: 100%;
-        height: 3rem;
+        min-height: 3rem;
+        height: fit-content;
         background-color: rgb(224, 220, 220);
         border-radius: 5px;
         align-items: center;
         padding: 10px;
         color: black;
-        font-size:1.25rem;
+        font-size:1rem;
         justify-content:space-between;
         display: flex;
         .copy{
@@ -42,6 +55,9 @@
         margin-top: 2rem;
         align-self: flex-start;
         font-size: 1.25rem;
+        @include xsm{
+            font-size: 1rem;
+         }
     }
     .close{
         width: 5rem;
@@ -59,6 +75,9 @@
             background-color: #0471e6;
             transform: scale(1.09);
         }
+        @include xsm{
+            margin-top: 5px;
+         }
     }
     .copyToClipBoard{
         display: none;
