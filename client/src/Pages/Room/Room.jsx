@@ -23,14 +23,14 @@ const Room = () => {
   const [mic, setMic] = useState(true);
   const [micColor, setMiccolor] = useState("#2EA3F1");
 
-  const cameraToggle = async(e) => {
-    if(cameraColor == "#2EA3F1" )setCameracolor("#A80000");
+  const cameraToggle = async (e) => {
+    if (cameraColor == "#2EA3F1") setCameracolor("#A80000");
     else setCameracolor("#2EA3F1");
-    setCamera(!camera)
+    setCamera(!camera);
   };
 
   const micToggle = () => {
-    if(micColor == "#2EA3F1" )setMiccolor("#A80000");
+    if (micColor == "#2EA3F1") setMiccolor("#A80000");
     else setMiccolor("#2EA3F1");
     setMic(!mic);
   };
@@ -67,7 +67,7 @@ const Room = () => {
     });
     await hangUp(state.id);
     dispatch(showHeaderAndFooter);
-    navigate("/SQUAD/" );
+    navigate("/SQUAD/");
   };
 
   const { state } = useLocation();
@@ -79,23 +79,26 @@ const Room = () => {
     <>
       <div className="roomContainer">
         <div className="mediaScreen">
-          <video className="media" autoPlay ref={webcamVideo} />
-          <video
-            className="media"
-            autoPlay
-            ref={remoteVideo}
-            id="remoteVideo"
-          />
+          <video className="userMedia" autoPlay ref={webcamVideo} />
+          <video className="remoteMedia" autoPlay ref={remoteVideo} />
         </div>
         <div className="controls">
-          <button className="btn" onClick={cameraToggle} style={{ backgroundColor: cameraColor }}>
+          <button
+            className="btn"
+            onClick={cameraToggle}
+            style={{ backgroundColor: cameraColor }}
+          >
             {camera ? (
               <BsCameraVideoFill size={20} />
             ) : (
               <BsCameraVideoOffFill size={20} />
             )}
           </button>
-          <button className="btn" onClick={micToggle} style={{ backgroundColor: micColor }}>
+          <button
+            className="btn"
+            onClick={micToggle}
+            style={{ backgroundColor: micColor }}
+          >
             {mic ? <BsMicFill size={20} /> : <BsMicMuteFill size={20} />}
           </button>
           <button
