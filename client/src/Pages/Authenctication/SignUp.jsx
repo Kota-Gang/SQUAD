@@ -10,7 +10,7 @@ import "./styles.scss";
 import { FcGoogle } from "react-icons/fc";
 
 const actionCodeSettings = {
-  url: "http://localhost:5173/squadaccountemailverification",
+  url: "https://kota-gang.github.io/SQUAD/squadaccountemailverification",
   handleCodeInApp: true
 };
 
@@ -24,7 +24,9 @@ const SignUp = ({ setValue }) => {
       .then((data) => {
       })
       .catch((err) => {
-        console.log(err.message);
+        // 
+        alert("Something Went Wrong",err.message)
+    
       });
   };
 
@@ -47,13 +49,13 @@ const SignUp = ({ setValue }) => {
               );
             })
             .catch((error) => {
-              console.log(error.message);
+              // console.log(error.message);
               alert("Something Went Wrong Try After Some Time")
             });
           auth.signOut();
         })
         .catch((error) => {
-          console.log(error.message);
+          alert(error.message)
         });
     }
   };

@@ -38,7 +38,8 @@ const SignIn = ({setValue}) => {
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
-        console.log(error.message);
+        alert("User Not Fount Please Sign Up First");
+        setValue("Sign Up")
       });
   };
 
