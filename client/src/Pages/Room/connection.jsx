@@ -20,9 +20,9 @@ const servers = {
   iceCandidatePoolSize: 10,
 };
 
-let pc = new RTCPeerConnection(servers);
 let localStream = null;
 let remoteStream = null;
+let pc = null;
 
 export const micOff = async () => {
   let audioTrack = localStream.getAudioTracks();
@@ -43,10 +43,13 @@ export const cameraOn = async () => {
 };
 
 export const startWebCam = async () => {
+  pc = new RTCPeerConnection(servers);
   localStream = await navigator.mediaDevices.getUserMedia({
     video: { width: { min: 1024, ideal: 1280, max: 1920 },height: { min: 576, ideal: 720, max: 1080 }},
     audio:true
+
   });
+
   remoteStream = new MediaStream();
 
   localStream.getTracks().forEach((track) => {
