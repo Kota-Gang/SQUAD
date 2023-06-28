@@ -178,6 +178,9 @@ export const hangUp = async (roomCode) => {
   if (remoteStream) {
     remoteStream.getTracks().forEach((track) => track.stop());
   }
+  if (localStream) {
+    localStream.getTracks().forEach((track) => track.stop());
+  }
 
   if (pc) {
     pc.close();
