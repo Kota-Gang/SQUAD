@@ -23,7 +23,7 @@ function App() {
         />
         <Route path="/SQUAD/meet/:id" element={<Room/>} />
         <Route path="/SQUAD" element={<Home/>} />
-        <Route path="*" element={<Navigate to='/SQUAD'/>}/>
+        <Route path="*" element={<Navigate to='/SQUAD' />}/>
       </Routes>
       {!roomComponent && <Footer />}
     </>

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { provider, auth } from "./firebaseconfig";
 import {
   sendSignInLinkToEmail,
@@ -18,6 +18,7 @@ const SignUp = ({ setValue }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [userName, setUserName] = useState("");
+  const googleref = useRef(null);
 
   const singInWithGoogle = () => {
     signInWithPopup(auth, provider)
@@ -33,6 +34,9 @@ const SignUp = ({ setValue }) => {
   const signup = (e) => {
     e.preventDefault();
 
+    alert("This Function Is Currently Under Development Due To Some Bugs    "+"    Please Use Sign In With Google Feature")
+
+    return;
     if (userName.length == 0 || password.length < 6 || email.length == 0) {
       if (password.length < 6) {
         alert("Password Cannot Be Less Than 6 Digits");
@@ -98,7 +102,7 @@ const SignUp = ({ setValue }) => {
         </button>
       </form>
       <hr className="line" />
-      <span className="google" onClick={singInWithGoogle}>
+      <span className="google" onClick={singInWithGoogle} ref={googleref}>
         <FcGoogle size={25} className="icon" />
         Sign In With Google
       </span>
