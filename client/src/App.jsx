@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route ,Navigate} from "react-router-dom";
 import { useSelector } from "react-redux";
 import Home from "./Pages/Home/Home";
 import EmailVerification from "./Pages/Authenctication/emailVerification";
@@ -16,13 +16,14 @@ function App() {
   return (
     <>
       {!roomComponent && <Header />}
-      <Routes >
-        <Route path="/SQUAD" element={<Home />} />
+      <Routes path='' >
         <Route
           path="/SQUAD/squadaccountemailverification"
-          element={<EmailVerification />}
+          element={<EmailVerification/>}
         />
-        <Route path="/SQUAD/meet/:id" element={<Room />} />
+        <Route path="/SQUAD/meet/:id" element={<Room/>} />
+        <Route path="/SQUAD" element={<Home/>} />
+        <Route path="*" element={<Navigate to='/SQUAD'/>}/>
       </Routes>
       {!roomComponent && <Footer />}
     </>

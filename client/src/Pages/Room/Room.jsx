@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { redirect, useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import "./styles.scss";
 import { startWebCam, startCall, answerCall, hangUp,micOff,micOn,cameraOff,cameraOn } from "./connection";
 import { useDispatch } from "react-redux";
@@ -76,7 +76,7 @@ const Room = () => {
     });
     await hangUp(state.id);
     dispatch(showHeaderAndFooter);
-    navigate("/SQUAD/");
+    navigate("/SQUAD");
   };
 
   const { state } = useLocation();

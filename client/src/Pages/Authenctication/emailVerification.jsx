@@ -24,7 +24,8 @@ const EmailVerification = () => {
           .then((result) => {
             window.localStorage.removeItem('emailForSignIn');
             setTimeout(() => {
-              navigate('/SQUAD/');
+              console.log("Dfda")
+              navigate('/');
             }, 2000);
           })
           .catch((error) => {
